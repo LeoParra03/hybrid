@@ -6,6 +6,9 @@ www/
 build/
 dist/
 
+# Angular CLI cache
+.angular/
+
 # Environment files
 src/environments/
 
