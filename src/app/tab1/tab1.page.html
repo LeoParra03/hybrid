@@ -1,12 +1,70 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Tab1</ion-title>
+
+    
+    
+    
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Box Quizz</ion-title>
+          <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      
+    </div>
+
   </ion-toolbar>
 </ion-header>
+
+<ion-menu side="end" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">This is the menu content.</ion-content>
+</ion-menu>
 <ion-content class="ion-padding">
-  <h1>Tab1</h1>
- 
-  <ion-nav-link [component]="component" routerDirection="forward">
-    <ion-button (click)="onClick()">Go to Page One</ion-button>
-  </ion-nav-link>
+  <h1>Quizz</h1>
+
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header">
+        <ion-label>Matemáticas</ion-label>
+        <ion-badge color="gray">0/2</ion-badge>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-nav-link [component]="component" routerDirection="forward">
+          <ion-button expand="block" (click)="onClick()" class="custom-button">
+            <ion-icon name="calculator-outline" slot="start"></ion-icon>
+            <span class="button-text">Sumas y Restas</span>
+          </ion-button>
+        </ion-nav-link>
+        
+        
+        <ion-nav-link [component]="component2" routerDirection="forward">
+          <ion-button expand="block" (click)="onClick()" class="custom-button">
+            <ion-icon name="calculator-outline" slot="start"></ion-icon>
+            <span class="button-text">Multiplicación y División</span>
+          </ion-button>
+        </ion-nav-link>
+
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header">
+        <ion-label>Historia</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Second Content</div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header">
+        <ion-label>Biología</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Third Content</div>
+    </ion-accordion>
+  </ion-accordion-group>
 </ion-content>
