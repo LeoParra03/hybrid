@@ -58,7 +58,24 @@
       <ion-item slot="header">
         <ion-label>Historia</ion-label>
       </ion-item>
-      <div class="ion-padding" slot="content">Second Content</div>
+     
+      <div class="ion-padding" slot="content">
+        <ion-nav-link [component]="component3" routerDirection="forward">
+          <ion-button expand="block" (click)="onClick()" class="custom-button">
+            <ion-icon name="calculator-outline" slot="start"></ion-icon>
+            <span class="button-text">Sumas y Restas</span>
+          </ion-button>
+        </ion-nav-link>
+        
+        
+        <ion-nav-link [component]="component3" routerDirection="forward">
+          <ion-button expand="block" (click)="onClick()" class="custom-button">
+            <ion-icon name="calculator-outline" slot="start"></ion-icon>
+            <span class="button-text">Multiplicación y División</span>
+          </ion-button>
+        </ion-nav-link>
+
+      </div>
     </ion-accordion>
     <ion-accordion value="third">
       <ion-item slot="header">
