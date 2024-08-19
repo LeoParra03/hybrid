@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet, IonNav} from '@ionic/angular/standalone';
-import { Tab1Page } from './tab1/tab1.page';
+
+import { TabsPage } from './tabs/tabs.page';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,5 @@ import { Tab1Page } from './tab1/tab1.page';
   imports: [IonApp, IonRouterOutlet, IonNav],
 })
 export class AppComponent {
-  component = Tab1Page;
+ 
 }

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ data }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div *ngIf= data === 'Sumas y Restas'>
+    <p>Contenido para Sumas y Restas</p>
+  </div>
+  <div *ngIf="data === 'Multiplicación y División'">
+    <p>Contenido para Multiplicación y División</p>
+  </div>
+  <div *ngIf="data === 'Primera Guerra Mundial'">
+    <p>Contenido para 'Primera Guerra Mundial'</p>
+  </div>
+  <div *ngIf="data === 'Segunda Guerra Mundial'">
+    <p>Contenido para 'Segunda Guerra Mundial'</p>
+  </div>
+  <div *ngIf="data === 'Evolución'">
+    <p>Contenido para 'Evolución'</p>
+  </div>
+  <div *ngIf="data === 'Anatomía'">
+    <p>Contenido para 'Anatomía'</p>
+  </div>
+
+</ion-content>

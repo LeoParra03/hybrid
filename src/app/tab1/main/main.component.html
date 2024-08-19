@@ -1,0 +1,106 @@
+
+<ion-header>
+  <ion-toolbar>
+
+    
+    
+    
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Box Quizz</ion-title>
+          <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      
+    </div>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu side="end" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding" >
+    <ion-avatar id="perfil">
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+  </ion-content>
+</ion-menu>
+<ion-content class="ion-padding">
+  <h1>Quizz</h1>
+
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header">
+        <ion-label>Matemáticas</ion-label>
+        <ion-badge color="gray">0/2</ion-badge>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        
+        <ion-button expand="block" class="custom-button" (click)="openModal('Sumas y Restas')">
+            <ion-icon name="calculator-outline" slot="start"></ion-icon>
+            <span class="button-text">Sumas y Restas</span>
+          </ion-button>
+       
+        
+        
+    
+          <ion-button expand="block" class="custom-button" (click)="openModal('Multiplicación y División')">
+            <ion-icon name="calculator-outline" slot="start"></ion-icon>
+            <span class="button-text">Multiplicación y División</span>
+          </ion-button>
+       
+
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header">
+        <ion-label>Historia</ion-label>
+      </ion-item>
+     
+      <div class="ion-padding" slot="content">
+        
+        <ion-button expand="block" class="custom-button" (click)="openModal('Primera Guerra Mundial')">
+            <ion-icon name="calculator-outline" slot="start"></ion-icon>
+            <span class="button-text">Primera Guerra Mundial</span>
+          </ion-button>
+ 
+        
+        
+        
+          <ion-button expand="block" class="custom-button" (click)="openModal('Segunda Guerra Mundial')">
+            <ion-icon name="calculator-outline" slot="start"></ion-icon>
+            <span class="button-text">Segunda Guerra Mundial</span>
+          </ion-button>
+        
+
+      </div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header">
+        <ion-label>Biología</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-button expand="block" class="custom-button" (click)="openModal('Evolución')">
+          <ion-icon name="calculator-outline" slot="start"></ion-icon>
+          <span class="button-text">Evolución</span>
+        </ion-button>
+
+      
+      
+      
+        <ion-button expand="block" class="custom-button" (click)="openModal('Anatomía')">
+          <ion-icon name="calculator-outline" slot="start"></ion-icon>
+          <span class="button-text">Anatomía</span>
+        </ion-button>
+
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-content>

@@ -1,9 +1,11 @@
+
 ion-content {
     display: flex;
     justify-content: center; 
     align-items: center; 
     text-align: center;
     height: 100%; 
+   
   }
   h1{
     font-size: 40px;
@@ -61,3 +63,22 @@ ion-content {
   .button-text {
     text-align: left;
   }
+  ion-content {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    height: 100%; /* Asegura que el contenido ocupe toda la altura disponible */
+  }
+  
+  ion-avatar {
+    width: 100px; /* Ajusta el tamaño del avatar */
+    height: 100px; /* Ajusta el tamaño del avatar */
+  }
+  
+  ion-avatar img {
+    width: 100%; /* Asegura que la imagen ocupe todo el avatar */
+    height: 100%; /* Asegura que la imagen ocupe todo el avatar */
+    object-fit: contain; /* Ajusta la imagen para que se vea bien dentro del contenedor */
+    align-items: center; 
+  }
+  
