@@ -1,7 +1,8 @@
+
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet, IonNav} from '@ionic/angular/standalone';
-
-import { TabsPage } from './tabs/tabs.page';
+import { register } from 'swiper/element/bundle';
+register();
 
 @Component({
   selector: 'app-root',

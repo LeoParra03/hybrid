@@ -16,10 +16,10 @@ export class MainComponent  implements OnInit {
  
   constructor(private modalController: ModalController) {}
 
-  async openModal(content: string) {
+  async openModal(data: string) {
     const modal = await this.modalController.create({
       component: ModalComponent,
-      componentProps: { data: content }
+      componentProps: { data: data }
     });
     return await modal.present();
   }

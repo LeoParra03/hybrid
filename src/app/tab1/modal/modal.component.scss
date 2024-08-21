@@ -1,0 +1,16 @@
+/* Asegúrate de que el contenedor de Swiper ocupa todo el espacio disponible */
+swiper-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Ajusta el tamaño de los slides para que se adapten al contenedor */
+  swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Ajusta el tamaño según tus necesidades */
+    width: 100%;
+    height: auto; /* Mantén la altura automática para que se ajuste al contenido */
+  }

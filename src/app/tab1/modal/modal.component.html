@@ -8,10 +8,30 @@
 </ion-header>
 
 <ion-content>
-  
-  <div *ngIf= data === 'Sumas y Restas'>
-    <p>Contenido para Sumas y Restas</p>
+
+  <div *ngIf="data === 'Sumas y Restas'">
+
+
+   
+   
+        <h3>Question 1</h3>
+     
+    
+    
+      <swiper-container
+      (slidechange)="swiperSlideChanged($event)"
+      [loop]="true"
+      [pagination]="true"
+    >
+      <swiper-slide>Slide 1</swiper-slide>
+      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+    </swiper-container>
+    
+
+
   </div>
+
   <div *ngIf="data === 'Multiplicación y División'">
     <p>Contenido para Multiplicación y División</p>
   </div>
