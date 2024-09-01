@@ -127,11 +127,40 @@ export class ModalComponent implements OnInit {
     await alert.present();
   }
 
-  addQuestion() {
-    console.log(this.newQuestion);
+  async addQuestion() {
+    if (!this.newQuestion.enunciado.trim()) {
+      await this.showValidationError('El enunciado no puede estar vacío.');
+      return;
+    }
+  
+    if (!this.newQuestion.opcion1.trim() || !this.newQuestion.opcion2.trim() || 
+        !this.newQuestion.opcion3.trim() || !this.newQuestion.opcion4.trim()) {
+      await this.showValidationError('Todas las opciones deben estar llenas.');
+      return;
+    }
+  
+    const opciones = [this.newQuestion.opcion1, this.newQuestion.opcion2, 
+                      this.newQuestion.opcion3, this.newQuestion.opcion4];
+  
+    if (!opciones.includes(this.newQuestion.respuesta)) {
+      await this.showValidationError('La respuesta correcta debe coincidir con una de las opciones.');
+      return;
+    }
+  
     this.dataProvider.addQuestion(this.newQuestion).subscribe(() => {
-      // Manejar la respuesta, por ejemplo, cerrar el modal o mostrar un mensaje de éxito
       this.dismissModal();
     });
   }
+
+  async showValidationError(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      color: 'danger'
+    });
+    toast.present();
+  }
+  
+  
 }
