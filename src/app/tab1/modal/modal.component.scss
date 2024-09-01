@@ -24,4 +24,21 @@ swiper-slide {
 ion-card {
   margin: 16px; /* Añadir margen alrededor del card */
 }
-  
+
+ion-content {
+  --background: #510941; /* Fondo claro */
+}
+
+ion-toolbar {
+  --background: #761973; /* Fondo oscuro */
+  --color: #fff; /* Color del texto */
+}
+
+ion-card{
+  --background: #761973;
+  --color: #fff; /* Color del texto */
+}
+ion-card-item{
+  --background: #761973;
+  --color: #fff; /* Color del texto */
+}

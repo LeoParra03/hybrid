@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonNavLink, IonButton, IonNav, IonAccordion, IonItem, IonLabel, IonAccordionGroup, IonIcon, IonBadge, IonMenu, IonMenuButton, IonButtons, IonAvatar, IonRadio, IonList, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonInput } from '@ionic/angular/standalone';
+import { AlertController, ToastController, IonHeader, IonToolbar, IonTitle, IonContent, IonNavLink, IonButton, IonNav, IonAccordion, IonItem, IonLabel, IonAccordionGroup, IonIcon, IonBadge, IonMenu, IonMenuButton, IonButtons, IonAvatar, IonRadio, IonList, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonInput } from '@ionic/angular/standalone';
 import { ModalController } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -61,7 +61,7 @@ export class ModalComponent implements OnInit {
     respuesta: ''
   };
 
-  constructor(private modalController: ModalController, private dataProvider: ProviderService) { }
+  constructor(private modalController: ModalController, private dataProvider: ProviderService, private toastController: ToastController, private alertController: AlertController) { }
 
   ngOnInit() {
     this.loadQuestions();
@@ -101,7 +101,7 @@ export class ModalComponent implements OnInit {
     }
   }
 
-  submitQuiz() {
+  async submitQuiz() {
     let score = 0;
     console.log(this.selectedAnswers);
     this.questionList.forEach((question, index) => {
@@ -110,7 +110,21 @@ export class ModalComponent implements OnInit {
       }
     });
 
-    alert(`Tu puntuación es ${score} de ${this.questionList.length}`);
+    const alert = await this.alertController.create({
+      header: 'Resultado del Quiz',
+      subHeader: 'Tu puntuación',
+      message: `Tu puntuación es ${score} de ${this.questionList.length}`,
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.dismissModal(); // Llama a la función dismiss() cuando se presione "OK"
+          }
+        }
+      ],
+    });
+
+    await alert.present();
   }
 
   addQuestion() {

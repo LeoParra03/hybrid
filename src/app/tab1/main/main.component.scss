@@ -10,3 +10,12 @@ h1{
     display: block;
     margin: 0 auto;
   }
+
+  ion-toolbar {
+    --background: #761973; /* Fondo oscuro */
+    --color: #fff; /* Color del texto */
+  }
+  
+  ion-content {
+    --background: #510941; /* Fondo claro */
+  }
