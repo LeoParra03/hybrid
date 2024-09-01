@@ -91,6 +91,7 @@ export class ModalComponent implements OnInit {
         (questions: any) => {
           let questionArray = Object.values(questions) as Data[];
           this.questionList = this.shuffleArray(questionArray); // Baraja las preguntas
+          this.questionList = this.questionList.slice(0, 5);
           this.selectedAnswers = Array(this.questionList.length).fill(null);
         },
         (error) => {
