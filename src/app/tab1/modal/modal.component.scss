@@ -1,16 +1,27 @@
-/* Asegúrate de que el contenedor de Swiper ocupa todo el espacio disponible */
 swiper-container {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+  display: block;
+  width: 100%;
+  height: auto; /* Ajustar la altura según el contenido */
+  padding: 16px; /* Añadir padding para separar el contenido */
+}
+
+swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto; /* Mantén la altura automática */
+  padding: 16px; /* Añadir padding dentro de cada slide */
+}
+
+.titulo {
+  color: var(--ion-color-primary);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px; /* Añadir margen inferior */
+}
+
+ion-card {
+  margin: 16px; /* Añadir margen alrededor del card */
+}
   
-  /* Ajusta el tamaño de los slides para que se adapten al contenedor */
-  swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Ajusta el tamaño según tus necesidades */
-    width: 100%;
-    height: auto; /* Mantén la altura automática para que se ajuste al contenido */
-  }

@@ -11,13 +11,13 @@
 
   <div *ngIf="data === 'Sumas y Restas'">
 
-
-   
-   
-        <h3>Question 1</h3>
-     
+  <ion-card>
     
+    <ion-card-header>
+      <ion-card-title class="titulo">Question 1</ion-card-title>
+      </ion-card-header>
     
+        <ion-card-content>
       <swiper-container
       (slidechange)="swiperSlideChanged($event)"
       [loop]="true"
@@ -28,24 +28,117 @@
       <swiper-slide>Slide 3</swiper-slide>
     </swiper-container>
     
-
-
+  </ion-card-content>
+</ion-card>
   </div>
 
   <div *ngIf="data === 'Multiplicación y División'">
-    <p>Contenido para Multiplicación y División</p>
+    <ion-card>
+    
+      <ion-card-header>
+        <ion-card-title class="titulo">Question 1</ion-card-title>
+        </ion-card-header>
+      
+          <ion-card-content>
+        <swiper-container
+        (slidechange)="swiperSlideChanged($event)"
+        [loop]="true"
+        [pagination]="true"
+      >
+        <swiper-slide>Slide 1</swiper-slide>
+        <swiper-slide>Slide 2</swiper-slide>
+        <swiper-slide>Slide 3</swiper-slide>
+      </swiper-container>
+      
+    </ion-card-content>
+  </ion-card>
   </div>
   <div *ngIf="data === 'Primera Guerra Mundial'">
-    <p>Contenido para 'Primera Guerra Mundial'</p>
+    <ion-card>
+    
+      <ion-card-header>
+        <ion-card-title class="titulo">Question 1</ion-card-title>
+        </ion-card-header>
+      
+          <ion-card-content>
+        <swiper-container
+        (slidechange)="swiperSlideChanged($event)"
+        [loop]="true"
+        [pagination]="true"
+      >
+        <swiper-slide>Slide 1</swiper-slide>
+        <swiper-slide>Slide 2</swiper-slide>
+        <swiper-slide>Slide 3</swiper-slide>
+      </swiper-container>
+      
+    </ion-card-content>
+  </ion-card>
   </div>
   <div *ngIf="data === 'Segunda Guerra Mundial'">
-    <p>Contenido para 'Segunda Guerra Mundial'</p>
+    <ion-card>
+    
+      <ion-card-header>
+        <ion-card-title class="titulo">Question 1</ion-card-title>
+        </ion-card-header>
+      
+          <ion-card-content>
+        <swiper-container
+        (slidechange)="swiperSlideChanged($event)"
+        [loop]="true"
+        [pagination]="true"
+      >
+        <swiper-slide>Slide 1</swiper-slide>
+        <swiper-slide>Slide 2</swiper-slide>
+        <swiper-slide>Slide 3</swiper-slide>
+      </swiper-container>
+      
+    </ion-card-content>
+  </ion-card>
   </div>
   <div *ngIf="data === 'Evolución'">
-    <p>Contenido para 'Evolución'</p>
+    <ion-card>
+    
+      <ion-card-header>
+        <ion-card-title class="titulo">Question 1</ion-card-title>
+        </ion-card-header>
+      
+          <ion-card-content>
+        <swiper-container
+        (slidechange)="swiperSlideChanged($event)"
+        [loop]="true"
+        [pagination]="true"
+      >
+        <swiper-slide><p id="descripcion">
+          Una aplicación móvil desarrollada en Angular Ionic es un software multiplataforma que utiliza el framework Angular para construir la lógica y la estructura de la aplicación, junto con el framework Ionic para crear una interfaz de usuario atractiva y funcional. Ionic proporciona componentes y herramientas para diseñar aplicaciones que se sienten y se ven nativas en dispositivos iOS y Android. La aplicación se puede desplegar tanto en la web como en tiendas de aplicaciones móviles. Utiliza tecnologías web como HTML, CSS y JavaScript, lo que facilita la reutilización de código y la implementación rápida.
+          </p>
+   </swiper-slide>
+        <swiper-slide>Slide 2</swiper-slide>
+        <swiper-slide>Slide 3</swiper-slide>
+      </swiper-container>
+      
+    </ion-card-content>
+  </ion-card>
   </div>
   <div *ngIf="data === 'Anatomía'">
-    <p>Contenido para 'Anatomía'</p>
+    <ion-card>
+    
+      <ion-card-header>
+        <ion-card-title class="titulo">Question 1</ion-card-title>
+        </ion-card-header>
+      
+          <ion-card-content>
+        <swiper-container
+        (slidechange)="swiperSlideChanged($event)"
+        [loop]="true"
+        [pagination]="true"
+      >
+        <swiper-slide>Slide 1</swiper-slide>
+        <swiper-slide>Slide 2</swiper-slide>
+        <swiper-slide>Slide 3</swiper-slide>
+      </swiper-container>
+      
+    </ion-card-content>
+  </ion-card>
   </div>
 
 </ion-content>
