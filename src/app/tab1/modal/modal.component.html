@@ -8,137 +8,43 @@
 </ion-header>
 
 <ion-content>
-
-  <div *ngIf="data === 'Sumas y Restas'">
-
-  <ion-card>
-    
-    <ion-card-header>
-      <ion-card-title class="titulo">Question 1</ion-card-title>
+  <div *ngIf="data === 'Crear Pregunta'">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="titulo">Question 1</ion-card-title>
       </ion-card-header>
-    
-        <ion-card-content>
-      <swiper-container
-      (slidechange)="swiperSlideChanged($event)"
-      [loop]="true"
-      [pagination]="true"
-    >
-      <swiper-slide>Slide 1</swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-    </swiper-container>
-    
-  </ion-card-content>
-</ion-card>
+      <ion-card-content>
+        <!-- Formulario para crear preguntas -->
+      </ion-card-content>
+    </ion-card>
   </div>
 
-  <div *ngIf="data === 'Multiplicación y División'">
-    <ion-card>
-    
+  <div *ngIf="data === 'Iniciar Quizz'">
+    <ion-card *ngFor="let question of questionList; let i = index">
       <ion-card-header>
-        <ion-card-title class="titulo">Question 1</ion-card-title>
-        </ion-card-header>
-      
-          <ion-card-content>
-        <swiper-container
-        (slidechange)="swiperSlideChanged($event)"
-        [loop]="true"
-        [pagination]="true"
-      >
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-      </swiper-container>
-      
-    </ion-card-content>
-  </ion-card>
+        <ion-card-title>{{ i + 1 }}. {{ question.enunciado }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-radio-group [(ngModel)]="selectedAnswers[i]">
+          <ion-item>
+            <ion-label>{{ question.opcion1 }}</ion-label>
+            <ion-radio slot="start" [value]="question.opcion1"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{ question.opcion2 }}</ion-label>
+            <ion-radio slot="start" [value]="question.opcion2"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{ question.opcion3 }}</ion-label>
+            <ion-radio slot="start" [value]="question.opcion3"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{ question.opcion4 }}</ion-label>
+            <ion-radio slot="start" [value]="question.opcion4"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-card-content>
+    </ion-card>
+    <ion-button expand="block" (click)="submitQuiz()">Enviar Quiz</ion-button>
   </div>
-  <div *ngIf="data === 'Primera Guerra Mundial'">
-    <ion-card>
-    
-      <ion-card-header>
-        <ion-card-title class="titulo">Question 1</ion-card-title>
-        </ion-card-header>
-      
-          <ion-card-content>
-        <swiper-container
-        (slidechange)="swiperSlideChanged($event)"
-        [loop]="true"
-        [pagination]="true"
-      >
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-      </swiper-container>
-      
-    </ion-card-content>
-  </ion-card>
-  </div>
-  <div *ngIf="data === 'Segunda Guerra Mundial'">
-    <ion-card>
-    
-      <ion-card-header>
-        <ion-card-title class="titulo">Question 1</ion-card-title>
-        </ion-card-header>
-      
-          <ion-card-content>
-        <swiper-container
-        (slidechange)="swiperSlideChanged($event)"
-        [loop]="true"
-        [pagination]="true"
-      >
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-      </swiper-container>
-      
-    </ion-card-content>
-  </ion-card>
-  </div>
-  <div *ngIf="data === 'Evolución'">
-    <ion-card>
-    
-      <ion-card-header>
-        <ion-card-title class="titulo">Question 1</ion-card-title>
-        </ion-card-header>
-      
-          <ion-card-content>
-        <swiper-container
-        (slidechange)="swiperSlideChanged($event)"
-        [loop]="true"
-        [pagination]="true"
-      >
-        <swiper-slide><p id="descripcion">
-          Una aplicación móvil desarrollada en Angular Ionic es un software multiplataforma que utiliza el framework Angular para construir la lógica y la estructura de la aplicación, junto con el framework Ionic para crear una interfaz de usuario atractiva y funcional. Ionic proporciona componentes y herramientas para diseñar aplicaciones que se sienten y se ven nativas en dispositivos iOS y Android. La aplicación se puede desplegar tanto en la web como en tiendas de aplicaciones móviles. Utiliza tecnologías web como HTML, CSS y JavaScript, lo que facilita la reutilización de código y la implementación rápida.
-          </p>
-   </swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-      </swiper-container>
-      
-    </ion-card-content>
-  </ion-card>
-  </div>
-  <div *ngIf="data === 'Anatomía'">
-    <ion-card>
-    
-      <ion-card-header>
-        <ion-card-title class="titulo">Question 1</ion-card-title>
-        </ion-card-header>
-      
-          <ion-card-content>
-        <swiper-container
-        (slidechange)="swiperSlideChanged($event)"
-        [loop]="true"
-        [pagination]="true"
-      >
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-      </swiper-container>
-      
-    </ion-card-content>
-  </ion-card>
-  </div>
-
 </ion-content>
