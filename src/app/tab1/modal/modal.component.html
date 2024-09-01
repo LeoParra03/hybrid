@@ -8,24 +8,16 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="data === 'Crear Pregunta'">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title class="titulo">Question 1</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <!-- Formulario para crear preguntas -->
-      </ion-card-content>
-    </ion-card>
-  </div>
-
+  <!-- Condición para iniciar el quizz -->
   <div *ngIf="data === 'Iniciar Quizz'">
+    <!-- Recorremos las preguntas -->
     <ion-card *ngFor="let question of questionList; let i = index">
       <ion-card-header>
         <ion-card-title>{{ i + 1 }}. {{ question.enunciado }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-radio-group [(ngModel)]="selectedAnswers[i]">
+        <!-- Grupo de opciones de respuesta -->
+        <ion-radio-group (ionChange)="selectAnswer(i, $event.detail.value)">
           <ion-item>
             <ion-label>{{ question.opcion1 }}</ion-label>
             <ion-radio slot="start" [value]="question.opcion1"></ion-radio>
@@ -42,9 +34,10 @@
             <ion-label>{{ question.opcion4 }}</ion-label>
             <ion-radio slot="start" [value]="question.opcion4"></ion-radio>
           </ion-item>
-        </ion-radio-group>
+        </ion-radio-group>        
       </ion-card-content>
     </ion-card>
+    <!-- Botón para enviar el quiz -->
     <ion-button expand="block" (click)="submitQuiz()">Enviar Quiz</ion-button>
   </div>
 </ion-content>

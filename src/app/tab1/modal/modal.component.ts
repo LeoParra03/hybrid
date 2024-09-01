@@ -1,77 +1,98 @@
-import { Component, Input } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonNavLink, IonButton, IonNav, IonAccordion,IonItem,IonLabel,IonAccordionGroup,IonIcon,IonBadge,IonMenu,IonMenuButton,IonButtons, IonAvatar, IonRadio, IonList,IonCard, IonCardHeader, IonCardContent, IonCardTitle} from '@ionic/angular/standalone';
+import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonNavLink, IonButton, IonNav, IonAccordion, IonItem, IonLabel, IonAccordionGroup, IonIcon, IonBadge, IonMenu, IonMenuButton, IonButtons, IonAvatar, IonRadio, IonList, IonCard, IonCardHeader, IonCardContent, IonCardTitle } from '@ionic/angular/standalone';
 import { ModalController } from '@ionic/angular';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
-
+import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
-import { HttpClientModule } from  '@angular/common/http';
-
-/* 4. Importe de la interfaz */
-import { Data } from '../../interfaces/data';
-
-/* 5. Importe del servicio */
 import { ProviderService } from '../../services/provider.service';
+import { Data } from '../../interfaces/data';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
   standalone: true,
-  imports: [HttpClientModule, CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonNavLink, IonButton, IonNav,IonAccordion,IonItem,IonLabel,IonAccordionGroup,IonIcon,IonBadge,IonMenu,IonMenuButton,IonButtons,IonAvatar, IonRadio, IonList, IonCard, IonCardHeader, IonCardContent,IonCardTitle],
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    FormsModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonNavLink,
+    IonButton,
+    IonNav,
+    IonAccordion,
+    IonItem,
+    IonLabel,
+    IonAccordionGroup,
+    IonIcon,
+    IonBadge,
+    IonMenu,
+    IonMenuButton,
+    IonButtons,
+    IonAvatar,
+    IonRadio,
+    IonList,
+    IonCard,
+    IonCardHeader,
+    IonCardContent,
+    IonCardTitle
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ProviderService],
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
 
   @Input() data: string = '';
+  questionList: Data[] = [];
+  selectedAnswers: string[] = [];
 
   constructor(private modalController: ModalController, private dataProvider: ProviderService) { }
-  
+
+  ngOnInit() {
+    this.loadQuestions();
+  }
+
   dismissModal() {
     this.modalController.dismiss();
   }
 
-  selectAnswer(answer: string) {
-    console.log('Selected answer:', answer);
-    
-  }
-swiperSlideChanged(e: any) {
-    console.log('changed: ', e);
+  selectAnswer(questionIndex: number, answer: string) {
+    this.selectedAnswers[questionIndex] = answer;
+    console.log('Selected answer for question', questionIndex, ':', answer);
   }
 
-
-
-
-  
-
-  questions = {
-    "preg": {
-      "enunciado": "¿Cuánto es 2 + 2?",
-      "opcion1": "8",
-      "opcion2": "1",
-      "opcion3": "3",
-      "opcion4": "4",
-      "respuesta": "4"
-    },
-    "preg2": {
-      "enunciado": "Capital de Ecuador",
-      "opcion1": "Guayaquil",
-      "opcion2": "Quito",
-      "opcion3": "Manta",
-      "opcion4": "Loja",
-      "respuesta": "Quito"
+  shuffleArray(array: any[]): any[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
-  };
+    return array;
+  }
 
-  questionList = Object.values(this.questions);
+  loadQuestions() {
+    this.dataProvider.getQuestions().subscribe(
+      (questions: any) => {
+        let questionArray = Object.values(questions) as Data[];
 
-  selectedAnswers = Array(this.questionList.length).fill(null); // Inicializa con null para cada pregunta
+        questionArray = this.shuffleArray(questionArray);
 
+        this.questionList = questionArray.slice(0, 10);
+
+        this.selectedAnswers = Array(this.questionList.length).fill(null);
+      },
+      (error) => {
+        console.error('Error loading questions:', error);
+      }
+    );
+  }
 
   submitQuiz() {
     let score = 0;
-
+    console.log(this.selectedAnswers);
     this.questionList.forEach((question, index) => {
       if (this.selectedAnswers[index] === question.respuesta) {
         score++;
@@ -79,6 +100,5 @@ swiperSlideChanged(e: any) {
     });
 
     alert(`Tu puntuación es ${score} de ${this.questionList.length}`);
-  
   }
 }
