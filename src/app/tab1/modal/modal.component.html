@@ -8,17 +8,16 @@
 </ion-header>
 
 <ion-content>
+
   <!-- Condición para iniciar el quizz -->
   <div *ngIf="data === 'Iniciar Quizz'">
-    <!-- Recorremos las preguntas -->
     <ion-card *ngFor="let question of questionList; let i = index">
       <ion-card-header>
         <ion-card-title>{{ i + 1 }}. {{ question.enunciado }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <!-- Grupo de opciones de respuesta -->
         <ion-radio-group (ionChange)="selectAnswer(i, $event.detail.value)">
-          <ion-item>
+        <ion-item>
             <ion-label>{{ question.opcion1 }}</ion-label>
             <ion-radio slot="start" [value]="question.opcion1"></ion-radio>
           </ion-item>
@@ -37,7 +36,42 @@
         </ion-radio-group>        
       </ion-card-content>
     </ion-card>
-    <!-- Botón para enviar el quiz -->
     <ion-button expand="block" (click)="submitQuiz()">Enviar Quiz</ion-button>
+  </div>
+
+  <!-- Condición para agregar preguntas -->
+  <div *ngIf="data === 'Agregar Pregunta'">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="titulo">Crear Pregunta</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Enunciado</ion-label>
+          <ion-input [(ngModel)]="newQuestion.enunciado"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Opción 1</ion-label>
+          <ion-input [(ngModel)]="newQuestion.opcion1"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Opción 2</ion-label>
+          <ion-input [(ngModel)]="newQuestion.opcion2"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Opción 3</ion-label>
+          <ion-input [(ngModel)]="newQuestion.opcion3"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Opción 4</ion-label>
+          <ion-input [(ngModel)]="newQuestion.opcion4"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Respuesta Correcta</ion-label>
+          <ion-input [(ngModel)]="newQuestion.respuesta"></ion-input>
+        </ion-item>
+        <ion-button expand="block" (click)="addQuestion()">Agregar Pregunta</ion-button>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

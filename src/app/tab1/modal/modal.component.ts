@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonNavLink, IonButton, IonNav, IonAccordion, IonItem, IonLabel, IonAccordionGroup, IonIcon, IonBadge, IonMenu, IonMenuButton, IonButtons, IonAvatar, IonRadio, IonList, IonCard, IonCardHeader, IonCardContent, IonCardTitle } from '@ionic/angular/standalone';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonNavLink, IonButton, IonNav, IonAccordion, IonItem, IonLabel, IonAccordionGroup, IonIcon, IonBadge, IonMenu, IonMenuButton, IonButtons, IonAvatar, IonRadio, IonList, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonInput } from '@ionic/angular/standalone';
 import { ModalController } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -15,6 +15,7 @@ import { Data } from '../../interfaces/data';
   standalone: true,
   imports: [
     HttpClientModule,
+    ReactiveFormsModule,
     CommonModule,
     FormsModule,
     IonHeader,
@@ -39,7 +40,8 @@ import { Data } from '../../interfaces/data';
     IonCard,
     IonCardHeader,
     IonCardContent,
-    IonCardTitle
+    IonCardTitle,
+    IonInput
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ProviderService],
@@ -49,6 +51,15 @@ export class ModalComponent implements OnInit {
   @Input() data: string = '';
   questionList: Data[] = [];
   selectedAnswers: string[] = [];
+  questionsLoaded: boolean = false;
+  newQuestion: Data = {
+    enunciado: '',
+    opcion1: '',
+    opcion2: '',
+    opcion3: '',
+    opcion4: '',
+    respuesta: ''
+  };
 
   constructor(private modalController: ModalController, private dataProvider: ProviderService) { }
 
@@ -74,20 +85,19 @@ export class ModalComponent implements OnInit {
   }
 
   loadQuestions() {
-    this.dataProvider.getQuestions().subscribe(
-      (questions: any) => {
-        let questionArray = Object.values(questions) as Data[];
-
-        questionArray = this.shuffleArray(questionArray);
-
-        this.questionList = questionArray.slice(0, 10);
-
-        this.selectedAnswers = Array(this.questionList.length).fill(null);
-      },
-      (error) => {
-        console.error('Error loading questions:', error);
-      }
-    );
+    this.questionsLoaded = false;
+    if (this.data === 'Iniciar Quizz') {
+      this.dataProvider.getQuestions().subscribe(
+        (questions: any) => {
+          let questionArray = Object.values(questions) as Data[];
+          this.questionList = this.shuffleArray(questionArray); // Baraja las preguntas
+          this.selectedAnswers = Array(this.questionList.length).fill(null);
+        },
+        (error) => {
+          console.error('Error loading questions:', error);
+        }
+      );
+    }
   }
 
   submitQuiz() {
@@ -100,5 +110,13 @@ export class ModalComponent implements OnInit {
     });
 
     alert(`Tu puntuación es ${score} de ${this.questionList.length}`);
+  }
+
+  addQuestion() {
+    console.log(this.newQuestion);
+    this.dataProvider.addQuestion(this.newQuestion).subscribe(() => {
+      // Manejar la respuesta, por ejemplo, cerrar el modal o mostrar un mensaje de éxito
+      this.dismissModal();
+    });
   }
 }

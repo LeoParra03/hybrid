@@ -8,19 +8,19 @@ import { Data } from '../interfaces/data';
 })
 export class ProviderService {
 
-  /* 2. Atributo URL (actualiza <NOMBRE_DEL_PROYECTO>) */
+  /* Atributo URL (actualiza <NOMBRE_DEL_PROYECTO> si es necesario) */
   private URL: string = 'https://hybrid-49436-default-rtdb.firebaseio.com/collection.json';
 
-  /* 3. Inyección de dependencia del HttpClient */
+  /* Inyección de dependencia del HttpClient */
   constructor(private http: HttpClient) { }
 
-  /* 4. Método con la petición HTTP para obtener las preguntas */
+  /* Método con la petición HTTP para obtener las preguntas */
   getQuestions(): Observable<Data[]> {
     return this.http.get<Data[]>(this.URL);
   }
 
-  /* 5. Método con la petición HTTP para enviar datos (opcional) */
-  postResponse(data: any): Observable<any> {
-    return this.http.post(this.URL, data);
+  /* Método con la petición HTTP para agregar una nueva pregunta */
+  addQuestion(question: Data): Observable<any> {
+    return this.http.post(this.URL, question);
   }
 }
